@@ -20,7 +20,7 @@ public class Main {
         hash.put("juhu", "huhuu");
 
         LotteryAPIController lofasz = new LotteryAPIController(APIService.getInstance());
-        System.out.println(lofasz.getWinner());
+        //System.out.println(lofasz.getWinner());
 
 
     }
