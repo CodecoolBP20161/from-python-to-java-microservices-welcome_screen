@@ -19,7 +19,7 @@ public class ConnectionHandling {
     public HashMap<String, String> getPropValues() {
         try {
             Properties prop = new Properties();
-            String propFileName = "connection/connection.properties";
+            String propFileName = "connection.properties";
 
             inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
 
