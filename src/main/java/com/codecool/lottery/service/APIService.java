@@ -13,7 +13,7 @@ import java.net.URISyntaxException;
 
 public class APIService {
 
-    private static final String API_URL = "localhost:60000/api/create";
+    private static final String API_URL = "http://localhost:60000/api/create";
 
     private static APIService INSTANCE;
 
@@ -24,17 +24,17 @@ public class APIService {
         return INSTANCE;
     }
 
-    public String sendEmail() throws IOException, URISyntaxException {
+    public String sendEmail(String email) throws IOException, URISyntaxException {
         URIBuilder builder = new URIBuilder(API_URL);
 
-        String email = "{\"to\":\"vogronicsp@gmail.com\",\n" +
+        String emailJSON = "{\"to\":\""+email+"\",\n" +
                 "\"from\":\"pindurpandurok.codecool@gmail.com\",\n" +
                 "\"message\": \"It's working!\",\n" +
-                "\"subject\": \"Newest\",\n" +
+                "\"subject\": \"worked\",\n" +
                 "\"APIKey\": \"1b0e88c8fde7477aac96ce1635306a3c\" }";
 
         return Request.Post(builder.build())
-                .bodyString(email, APPLICATION_JSON)
+                .bodyString(emailJSON, APPLICATION_JSON)
                 .execute()
                 .returnContent()
                 .asString();
