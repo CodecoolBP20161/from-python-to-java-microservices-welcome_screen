@@ -23,13 +23,13 @@ public class APIService {
         return INSTANCE;
     }
 
-    public String sentenceYoda(String sentence) throws IOException, URISyntaxException {
-        URIBuilder builder = new URIBuilder(API_URL);
-        builder.addParameter(GreetingsAPIController.YODA_SENTENCE_PARAM_KEY, sentence );
-        builder.addParameter("mashape-key", "CcilQQxkvcmshXRgzsRYUPrrgN9wp1zBZfKjsnjKI4Rtb5BaMW");
-        return execute(builder.build());
-
-    }
+//    public String sentenceYoda(String sentence) throws IOException, URISyntaxException {
+//        URIBuilder builder = new URIBuilder(API_URL);
+//        builder.addParameter(GreetingsAPIController.YODA_SENTENCE_PARAM_KEY, sentence );
+//        builder.addParameter("mashape-key", "CcilQQxkvcmshXRgzsRYUPrrgN9wp1zBZfKjsnjKI4Rtb5BaMW");
+//        return execute(builder.build());
+//
+//    }
 
     private String execute(URI uri) throws IOException {
         return Request.Get(uri)

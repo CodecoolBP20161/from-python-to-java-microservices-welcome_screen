@@ -23,8 +23,10 @@ public class LotteryService {
 
         application.controller = new LotteryAPIController(APIService.getInstance());
 
+        port(60001);
         // --- MAPPINGS ---
         get("/status", application.controller::status);
+        post("/api/random", application.controller::getWinner);
 
 
         // --- EXCEPTION HANDLING ---
