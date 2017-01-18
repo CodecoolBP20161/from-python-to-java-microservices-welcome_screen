@@ -37,6 +37,8 @@ public class LotteryAPIController {
         return key;
     }
 
+    //Request body JSON format: { "to":"email address", "from":"email adress", "message": "It's working!", "subject": "Newest", "APIKey": "APIKey(you get it from us)" }
+
     public String status(Request request, Response response) {
         return "ok";
     }
