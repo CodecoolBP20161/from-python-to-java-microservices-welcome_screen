@@ -5,6 +5,7 @@ import org.apache.http.client.utils.URIBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.utils.StringUtils;
+import static org.apache.http.entity.ContentType.APPLICATION_JSON;
 
 import java.io.IOException;
 import java.net.URI;
@@ -23,16 +24,25 @@ public class APIService {
         return INSTANCE;
     }
 
-//    public String sentenceYoda(String sentence) throws IOException, URISyntaxException {
-//        URIBuilder builder = new URIBuilder(API_URL);
-//        builder.addParameter(GreetingsAPIController.YODA_SENTENCE_PARAM_KEY, sentence );
-//        builder.addParameter("mashape-key", "CcilQQxkvcmshXRgzsRYUPrrgN9wp1zBZfKjsnjKI4Rtb5BaMW");
-//        return execute(builder.build());
-//
-//    }
+    public String sendEmail() throws IOException, URISyntaxException {
+        URIBuilder builder = new URIBuilder(API_URL);
+
+        String email = "{\"to\":\"vogronicsp@gmail.com\",\n" +
+                "\"from\":\"pindurpandurok.codecool@gmail.com\",\n" +
+                "\"message\": \"It's working!\",\n" +
+                "\"subject\": \"Newest\",\n" +
+                "\"APIKey\": \"1b0e88c8fde7477aac96ce1635306a3c\" }";
+
+        return Request.Post(builder.build())
+                .bodyString(email, APPLICATION_JSON)
+                .execute()
+                .returnContent()
+                .asString();
+
+    }
 
     private String execute(URI uri) throws IOException {
-        return Request.Get(uri)
+        return Request.Post(uri)
                 .execute()
                 .returnContent()
                 .asString();

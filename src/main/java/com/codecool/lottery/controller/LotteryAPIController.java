@@ -6,6 +6,8 @@ import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -19,7 +21,7 @@ public class LotteryAPIController {
 
     }
 
-    public String getWinner(Request req, Response res) throws JSONException {
+    public String getWinner(Request req, Response res) throws JSONException, IOException, URISyntaxException {
 
         JSONObject object = new JSONObject(req.body());
         Iterator<String> keysItr = object.keys();
@@ -34,6 +36,8 @@ public class LotteryAPIController {
             }
             count += 1;
         }
+        APIService apiService = new APIService();
+        apiService.sendEmail();
         return key;
     }
 
