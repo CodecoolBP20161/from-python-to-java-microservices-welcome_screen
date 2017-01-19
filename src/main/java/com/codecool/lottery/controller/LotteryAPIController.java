@@ -16,16 +16,24 @@ import java.util.Random;
  * Created by patrik on 2017.01.03..
  */
 public class LotteryAPIController {
+     private Random generator;
 
     public LotteryAPIController(APIService apiService) {
+        generator = new Random();
 
     }
 
-    public String getWinner(Request req, Response res) throws JSONException, IOException, URISyntaxException {
+    public void setGenerator(Random generator) {
+        this.generator = generator;
+    }
 
+    public String getWinner(Request req, Response res) throws JSONException, IOException, URISyntaxException {
         JSONObject object = new JSONObject(req.body());
+        return getRandomFromJson(object);
+    }
+
+    public String getRandomFromJson(JSONObject object) throws JSONException, IOException, URISyntaxException {
         Iterator<String> keysItr = object.keys();
-        Random generator = new Random();
         Integer randomValue =  generator.nextInt(object.length());
         Integer count = 0;
         String key = "";
