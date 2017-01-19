@@ -36,8 +36,9 @@ public class LotteryAPIController {
             }
             count += 1;
         }
+        String value = object.getString(key);
         APIService apiService = new APIService();
-        apiService.sendEmail(key);
+        apiService.sendEmail(key, value);
         return key;
     }
 

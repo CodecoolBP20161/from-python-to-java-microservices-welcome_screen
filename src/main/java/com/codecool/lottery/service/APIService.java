@@ -24,13 +24,13 @@ public class APIService {
         return INSTANCE;
     }
 
-    public String sendEmail(String email) throws IOException, URISyntaxException {
+    public String sendEmail(String email, String winner) throws IOException, URISyntaxException {
         URIBuilder builder = new URIBuilder(API_URL);
 
         String emailJSON = "{\"to\":\""+email+"\",\n" +
                 "\"from\":\"pindurpandurok.codecool@gmail.com\",\n" +
-                "\"message\": \"It's working!\",\n" +
-                "\"subject\": \"worked\",\n" +
+                "\"message\": \"Dear "+winner+"!\",\n" +
+                "\"subject\": \"Welcome_screen Gambling Game!\",\n" +
                 "\"APIKey\": \"1b0e88c8fde7477aac96ce1635306a3c\" }";
 
         return Request.Post(builder.build())
