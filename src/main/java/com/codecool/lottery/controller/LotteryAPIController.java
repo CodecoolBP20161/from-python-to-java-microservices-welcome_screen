@@ -6,7 +6,8 @@ import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -25,14 +26,12 @@ public class LotteryAPIController {
         this.generator = generator;
     }
 
-    public String getWinner(Request req, Response res) throws JSONException {
-
+    public String getWinner(Request req, Response res) throws JSONException, IOException, URISyntaxException {
         JSONObject object = new JSONObject(req.body());
-
         return getRandomFromJson(object);
     }
 
-    public String getRandomFromJson(JSONObject object) {
+    public String getRandomFromJson(JSONObject object) throws JSONException, IOException, URISyntaxException {
         Iterator<String> keysItr = object.keys();
         Integer randomValue =  generator.nextInt(object.length());
         Integer count = 0;
@@ -44,6 +43,9 @@ public class LotteryAPIController {
             }
             count += 1;
         }
+        String value = object.getString(key);
+        APIService apiService = new APIService();
+        apiService.sendEmail(key, value);
         return key;
     }
 
