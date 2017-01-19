@@ -14,7 +14,6 @@ import java.net.URISyntaxException;
 public class APIService {
 
     private static final String API_URL = "http://localhost:60000/api/create";
-
     private static APIService INSTANCE;
 
     public static APIService getInstance() {
@@ -29,9 +28,12 @@ public class APIService {
 
         String emailJSON = "{\"to\":\""+email+"\",\n" +
                 "\"from\":\"pindurpandurok.codecool@gmail.com\",\n" +
-                "\"message\": \"Dear "+winner+"!\",\n" +
+                "\"message\": \"Dear "+winner+"! You win an Iphone 7! For details please call us on " +
+                "0123456789 or answer this mail" +
+                "Best regards," +
+                "Welcome_screen Team!\",\n" +
                 "\"subject\": \"Welcome_screen Gambling Game!\",\n" +
-                "\"APIKey\": \"1b0e88c8fde7477aac96ce1635306a3c\" }";
+                "\"APIKey\": \"f44c716bbecf4d998400dfb95db4fbb9\" }";
 
         return Request.Post(builder.build())
                 .bodyString(emailJSON, APPLICATION_JSON)
@@ -39,12 +41,5 @@ public class APIService {
                 .returnContent()
                 .asString();
 
-    }
-
-    private String execute(URI uri) throws IOException {
-        return Request.Post(uri)
-                .execute()
-                .returnContent()
-                .asString();
     }
 }

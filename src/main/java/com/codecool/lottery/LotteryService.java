@@ -16,18 +16,13 @@ public class LotteryService {
 
     public static void main(String[] args) {
         logger.debug("Starting " + LotteryService.class.getName() + "...");
-
         setup(args);
-
         LotteryService application = new LotteryService();
-
         application.controller = new LotteryAPIController(APIService.getInstance());
-
         port(60001);
         // --- MAPPINGS ---
         get("/status", application.controller::status);
         post("/api/random", application.controller::getWinner);
-
 
         // --- EXCEPTION HANDLING ---
         exception(URISyntaxException.class, (exception, request, response) -> {
@@ -52,7 +47,6 @@ public class LotteryService {
             logger.error("Port must be given as the first argument.");
             System.exit(-1);
         }
-
         try {
             port(Integer.parseInt(args[0]));
         } catch (NumberFormatException e){
