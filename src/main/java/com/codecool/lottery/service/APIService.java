@@ -2,14 +2,11 @@ package com.codecool.lottery.service;
 
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import spark.utils.StringUtils;
-import static org.apache.http.entity.ContentType.APPLICATION_JSON;
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
+
+import static org.apache.http.entity.ContentType.APPLICATION_JSON;
 
 public class APIService {
 
